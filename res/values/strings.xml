@@ -4,4 +4,15 @@
     <string name="user_name">Username:</string>
     <string name="password">Password:</string>
     <string name="bt_login_text">Login</string>
+    <string name="address">Address:</string>
+    <string name="birthday">Birthday:</string>
+    <string name="online">Online:</string>
+    <string name="gender">Gender:</string>
+
+    <string name="peter">Peter</string>
+    <string name="peter_phone">09123446788</string>
+    <string name="mary">Mary</string>
+    <string name="mary_phone">09990390100</string>
+    <string name="john">Peter</string>
+    <string name="john_phone">09898380100</string>
 </resources>
