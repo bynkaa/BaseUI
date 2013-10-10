@@ -19,6 +19,13 @@ public class Profile extends Activity
 {
     private static final int DATE_DIALOG_ID = 999;
     private static final int TIME_DIALOG_ID = 111;
+    private static final String MY_ADDRESS = "address";
+    private static final String MY_YEAR = "year";
+    private static final String MY_MONTH = "month";
+    private static final String MY_DAY = "day";
+    private static final String MY_GENDER = "gender";
+    private static final String MY_HOUR = "hour";
+    private static final String MY_MINUTE = "minute";
     TextView tvAddress;
     TextView tvBirthday;
     TextView tvOnline;
@@ -36,6 +43,8 @@ public class Profile extends Activity
     private int day;
     private int hour;
     private int minute;
+    private String address;
+    private String gender;
     private DatePicker datePicker;
     private TimePicker timePicker;
 
@@ -44,6 +53,7 @@ public class Profile extends Activity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
+
         userName = getIntent().getStringExtra(Login.EXTRA_NAME);
         tvTitle = (TextView) findViewById(R.id.tv_title);
         tvTitle.setText(userName);
@@ -67,7 +77,25 @@ public class Profile extends Activity
         addListenerOnCBShowFriendList();
         addListenerOnTvBirthday();
         addListenerOnTvOnline();
-        startDefaultProfile();
+        if (savedInstanceState != null)
+        {
+            restoreState(savedInstanceState);
+        }
+        else
+            startDefaultProfile();
+    }
+
+    private void restoreState(Bundle bundle)
+    {
+        address = bundle.getString(MY_ADDRESS);
+        year = bundle.getInt(MY_YEAR);
+        hour = bundle.getInt(MY_HOUR);
+        day = bundle.getInt(MY_DAY);
+        month = bundle.getInt(MY_MONTH);
+        minute = bundle.getInt(MY_MINUTE);
+        gender = bundle.getString(MY_GENDER);
+        setProfile();
+
     }
 
     private void addListenerOnRgGender()
@@ -238,26 +266,27 @@ public class Profile extends Activity
 
     }
 
-    private void startDefaultProfile()
-    {
-        tvAddress.setText("Ha Noi");
+    private void startDefaultProfile(){
+        address = "HA NOI";
+        gender = "Male";
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day  = calendar.get(Calendar.DAY_OF_MONTH);
-
-        tvBirthday.setText(new StringBuilder().append(day).append("/").append(month).append("/").append(year).append(" "));
-
         hour = calendar.get(Calendar.HOUR_OF_DAY);
         minute = calendar.get(Calendar.MINUTE);
+        setProfile();
+
+    }
+    private void setProfile()
+    {
+        tvAddress.setText(address);
+        tvBirthday.setText(new StringBuilder().append(day).append("/").append(month).append("/").append(year).append(" "));
         tvOnline.setText(new StringBuilder().append(pad(hour)).append(":").append(pad(minute)));
-//        DateFormat dateFormatHour = new SimpleDateFormat("HH:mm a");
-//        tvOnline.setText(dateFormatHour.format(date));
-        tvGenderValue.setText("female");
+        tvGenderValue.setText(gender);
         datePicker.init(year,month,day,null);
         timePicker.setCurrentHour(hour);
         timePicker.setCurrentMinute(minute);
-
     }
 
     @Override
@@ -310,5 +339,18 @@ public class Profile extends Activity
             return String.valueOf(c);
         else
             return "0" + String.valueOf(c);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState)
+    {
+        super.onSaveInstanceState(outState);    //To change body of overridden methods use File | Settings | File Templates.
+        outState.putString(MY_ADDRESS, address);
+        outState.putInt(MY_YEAR, year);
+        outState.putInt(MY_MONTH,month);
+        outState.putInt(MY_DAY,day);
+        outState.putInt(MY_HOUR,hour);
+        outState.putInt(MY_MINUTE,minute);
+        outState.putString(MY_GENDER, gender);
     }
 }

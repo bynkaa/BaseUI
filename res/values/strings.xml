@@ -15,4 +15,5 @@
     <string name="mary_phone">09990390100</string>
     <string name="john">Peter</string>
     <string name="john_phone">09898380100</string>
+    <string name="logout"><u>Logout</u></string>
 </resources>

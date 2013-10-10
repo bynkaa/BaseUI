@@ -20,12 +20,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/password"
+            android:password="false"
             android:padding="10dp"
             android:id="@+id/login_tvPassword" android:layout_gravity="left|center_vertical"/>
     <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/login_etPassword" android:layout_gravity="left|center_vertical" android:layout_margin="6dp"/>
+            android:id="@+id/login_etPassword" android:layout_gravity="left|center_vertical" android:layout_margin="6dp"
+            android:password="true"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
