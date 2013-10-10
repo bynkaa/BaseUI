@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -61,6 +59,19 @@ public class Profile extends Activity
         datePicker = (DatePicker) findViewById(R.id.datePicker);
         timePicker = (TimePicker) findViewById(R.id.timePicker);
         rgGender = (RadioGroup) findViewById(R.id.rgGender);
+        addListenerOnRgGender();
+        addListenerOnTvAddress();
+        addListenerOnTvGender();
+        addSelectedItemSpinnerAddress();
+        addSelectedItemSpinnerGender();
+        addListenerOnCBShowFriendList();
+        addListenerOnTvBirthday();
+        addListenerOnTvOnline();
+        startDefaultProfile();
+    }
+
+    private void addListenerOnRgGender()
+    {
         rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             @Override
@@ -84,14 +95,6 @@ public class Profile extends Activity
 
             }
         });
-        addListenerOnTvAddress();
-        addListenerOnTvGender();
-        addSelectedItemSpinnerAddress();
-        addSelectedItemSpinnerGender();
-        addListenerOnCBShowFriendList();
-        addListenerOnTvBirthday();
-        addListenerOnTvOnline();
-        startDefaultProfile();
     }
 
     private void addListenerOnTvOnline()
