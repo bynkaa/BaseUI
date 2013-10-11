@@ -20,6 +20,7 @@ public class Profile extends Activity
     private static final int DATE_DIALOG_ID = 999;
     private static final int TIME_DIALOG_ID = 111;
     private static final String MY_INFOR = "information";
+    private static final String MY_CB_SHOW_FRIENDS = "friend list";
     TextView tvAddress;
     TextView tvBirthday;
     TextView tvOnline;
@@ -55,6 +56,7 @@ public class Profile extends Activity
         datePicker = (DatePicker) findViewById(R.id.datePicker);
         timePicker = (TimePicker) findViewById(R.id.timePicker);
         rgGender = (RadioGroup) findViewById(R.id.rgGender);
+        cbShowFriendList = (CheckBox) findViewById(R.id.cb_show_friend_list);
         addListenerOnRgGender();
         addListenerOnTvAddress();
         addListenerOnTvGender();
@@ -65,6 +67,7 @@ public class Profile extends Activity
         if (savedInstanceState != null)
         {
             infor = (Infor) savedInstanceState.getSerializable(MY_INFOR);
+            setListViewFriendList(savedInstanceState.getBoolean(MY_CB_SHOW_FRIENDS));
             setProfile();
         }
         else
@@ -168,7 +171,6 @@ public class Profile extends Activity
 
     private void addListenerOnCBShowFriendList()
     {
-        cbShowFriendList = (CheckBox) findViewById(R.id.cb_show_friend_list);
 
         cbShowFriendList.setOnClickListener(new View.OnClickListener()
         {
@@ -303,5 +305,6 @@ public class Profile extends Activity
     {
         super.onSaveInstanceState(outState);    //To change body of overridden methods use File | Settings | File Templates.
         outState.putSerializable(MY_INFOR,infor);
+        outState.putBoolean(MY_CB_SHOW_FRIENDS,cbShowFriendList.isChecked());
     }
 }
