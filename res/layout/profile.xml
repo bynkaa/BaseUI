@@ -92,12 +92,6 @@
             android:layout_height="wrap_content"
             android:entries="@array/address"
             android:visibility="invisible"/>
-    <Spinner
-            android:id="@+id/spinnerGender"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/gender"
-            android:visibility="invisible"/>
     <DatePicker
             android:id="@+id/datePicker"
             android:layout_height="wrap_content"
